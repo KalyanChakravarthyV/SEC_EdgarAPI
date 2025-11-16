@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from datetime import date
 
+from typing import Union
+
 from pydantic import BaseModel
 
 
@@ -27,7 +29,7 @@ class CompanyFinancialSnapshot(BaseModel):
     cik: str
     ticker: str
     company_name: str | None
-    metrics: dict[str, FinancialMetric]
+    metrics: dict[str, "MetricValue"]
 
 
 class CompanyIncomeStatement(BaseModel):
@@ -37,4 +39,15 @@ class CompanyIncomeStatement(BaseModel):
     ticker: str
     company_name: str | None
     filing_form: str
-    metrics: dict[str, FinancialMetric]
+    metrics: dict[str, "MetricValue"]
+
+
+class FinancialMetricSeries(BaseModel):
+    """Collection of observations for a metric concept."""
+
+    concept: str
+    label: str
+    entries: list[FinancialMetric]
+
+
+MetricValue = Union[FinancialMetric, FinancialMetricSeries]
