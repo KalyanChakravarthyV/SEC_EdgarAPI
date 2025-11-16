@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "sec-edgar-api"
+version = "0.1.0"
+description = "FastAPI service that aggregates 10-K filings for publicly traded companies via the SEC EDGAR REST API."
+authors = ["Codex Agent <agent@example.com>"]
+readme = "README.md"
+packages = [{include = "sec_edgar_api", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = {extras = ["standard"], version = "^0.30.0"}
+httpx = "^0.27.0"
+pydantic-settings = "^2.2.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+pytest-asyncio = "^0.23.7"
+ruff = "^0.4.8"
+mypy = "^1.10.0"
+
+[build-system]
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

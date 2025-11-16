@@ -1,0 +1,11 @@
+.venv
+.poetry-cache/
+.poetry-config/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.env
+*.pyc
+*.pyo
+uvicorn.log
+*.DS_Store
